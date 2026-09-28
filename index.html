@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ombena ThermoCalc Pro</title>
+    <!-- Importation de la bibliothèque jsPDF pour générer le PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,6 +61,12 @@
         .btn-reset:hover {
             background-color: #c9302c;
         }
+        .btn-pdf {
+            background-color: #28a745;
+        }
+        .btn-pdf:hover {
+            background-color: #218838;
+        }
         #resultat {
             margin-top: 20px;
             padding: 15px;
@@ -101,6 +109,7 @@
     <div id="resultat">
         <h3>Résultats de l'Étude</h3>
         <p id="texteResultat"></p>
+        <button class="btn-pdf" onclick="telechargerPDF()">Télécharger le rapport PDF</button>
     </div>
 </div>
 
@@ -112,8 +121,10 @@
         if(localStorage.getItem("resistance")) document.getElementById("resistance").value = localStorage.getItem("resistance");
     };
 
+    let dernierCalcul = {};
+
     function lancerCalcul() {
-        const nom = document.getElementById("nomProjet").value;
+        const nom = document.getElementById("nomProjet").value || "Projet sans nom";
         const surface = parseFloat(document.getElementById("surface").value);
         const deltaT = parseFloat(document.getElementById("deltaT").value);
         const R = parseFloat(document.getElementById("resistance").value);
@@ -131,15 +142,65 @@
         const fluxThermique = (surface * deltaT) / R;
         const coefficientU = 1 / R;
 
+        // Stocker pour le PDF
+        dernierCalcul = { nom, surface, deltaT, R, fluxThermique, coefficientU };
+
         const resDiv = document.getElementById("resultat");
         const texteRes = document.getElementById("texteResultat");
 
         texteRes.innerHTML = `
-            <strong>Projet :</strong> ${nom || "Non spécifié"}<br>
+            <strong>Projet :</strong> ${nom}<br>
             <strong>Coefficient de transmission thermique (U) :</strong> ${coefficientU.toFixed(2)} W/(m²·K)<br>
             <strong>Flux thermique total estimé :</strong> ${fluxThermique.toFixed(2)} W
         `;
         resDiv.style.display = "block";
+    }
+
+    function telechargerPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(18);
+        doc.setTextColor(0, 64, 128);
+        doc.text("Ombena ThermoCalc Pro", 20, 20);
+
+        doc.setFontSize(12);
+        doc.setTextColor(100, 100, 100);
+        doc.text("Rapport d'Étude Thermique & Efficacité Énergétique", 20, 28);
+
+        doc.setLineWidth(0.5);
+        doc.line(20, 34, 190, 34);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.setTextColor(50, 50, 50);
+
+        let y = 48;
+        doc.text(`Nom du Projet : ${dernierCalcul.nom}`, 20, y);
+        y += 10;
+        doc.text(`Surface de la paroi : ${dernierCalcul.surface} m²`, 20, y);
+        y += 10;
+        doc.text(`Ecart de temperature (Delta T) : ${dernierCalcul.deltaT} °C`, 20, y);
+        y += 10;
+        doc.text(`Resistance thermique (R) : ${dernierCalcul.R} m²·K/W`, 20, y);
+
+        y += 16;
+        doc.setFont("helvetica", "bold");
+        doc.text("Resultats de l'etude :", 20, y);
+        
+        y += 10;
+        doc.setFont("helvetica", "normal");
+        doc.text(`- Coefficient U : ${dernierCalcul.coefficientU.toFixed(2)} W/(m²·K)`, 25, y);
+        y += 10;
+        doc.text(`- Flux thermique total : ${dernierCalcul.fluxThermique.toFixed(2)} W`, 25, y);
+
+        y += 25;
+        doc.setFontSize(9);
+        doc.setTextColor(150, 150, 150);
+        doc.text("Genere par Ombena ThermoCalc Pro - Concu par Ombena", 20, y);
+
+        doc.save(`Rapport_Thermique_${dernierCalcul.nom.replace(/\s+/g, '_')}.pdf`);
     }
 
     function effacerDonnees() {
