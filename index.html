@@ -3,370 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ombena ThermoCalc Pro - Ultimate Edition</title>
+    <title>Ombena ThermoCalc Pro</title>
     <style>
-        :root {
-            --primary: #1e3c72;
-            --secondary: #2a5298;
-            --accent: #ff7e5f;
-            --bg: #f4f7fc;
-            --card-bg: #ffffff;
-            --text: #2d3748;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            transition: all 0.3s ease;
-        }
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        header h1 {
-            font-size: 1.3rem;
-            font-weight: 800;
-        }
-        header p {
-            font-size: 0.75rem;
-            opacity: 0.9;
-            margin-top: 0.2rem;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
         }
         .container {
-            flex: 1;
-            max-width: 580px;
-            margin: 1rem auto;
-            padding: 0 0.8rem;
-            width: 100%;
-        }
-        .card {
-            background: var(--card-bg);
-            padding: 1.2rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255,255,255,0.8);
-        }
-        .card h2 {
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
-            border-bottom: 2px solid #edf2f7;
-            padding-bottom: 0.4rem;
-        }
-        .input-group {
-            margin-bottom: 0.7rem;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 0.2rem;
-            color: #4a5568;
-            font-weight: 600;
-            font-size: 0.75rem;
-        }
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 0.6rem;
-            border: 1.5px solid #cbd5e0;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
             border-radius: 10px;
-            font-size: 0.85rem;
-            background: #fdfdfd;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .btn {
+        h2 {
+            text-align: center;
+            color: #004080;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
             display: block;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-            color: white;
-            padding: 0.7rem 1rem;
-            border-radius: 10px;
+            margin-bottom: 5px;
             font-weight: bold;
-            border: none;
-            cursor: pointer;
+        }
+        input, select {
             width: 100%;
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 0.8rem;
-            box-shadow: 0 4px 15px rgba(42, 82, 152, 0.3);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
         }
-        .btn-success { background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); }
-        .btn-secondary { background: #718096; }
-        .btn-warning { background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); }
-        .step-section { display: none; }
-        .step-section.active { display: block; }
-
-        .token-badge {
-            background: #ebf8ff;
-            color: #2b6cb0;
-            border: 1px solid #90cdf4;
-            padding: 0.4rem;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
-
-        #loadingOverlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            z-index: 9999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #004080;
             color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
         }
-        .scanner-loader {
-            width: 50px; height: 50px;
-            border: 4px solid rgba(255,255,255,0.1);
-            border-top: 4px solid #63b3ed;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-bottom: 1rem;
+        button:hover {
+            background-color: #002b5c;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        .page-doc {
-            padding: 1.2rem;
-            border: 2px solid var(--primary);
-            border-radius: 16px;
-            background: #ffffff;
+        .btn-reset {
+            background-color: #d9534f;
         }
-        .page-header {
-            text-align: center;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.6rem;
-            margin-bottom: 0.8rem;
+        .btn-reset:hover {
+            background-color: #c9302c;
         }
-        .page-header h3 { color: var(--primary); font-size: 1.05rem; text-transform: uppercase; }
-        .page-header p { color: #4a5568; font-size: 0.7rem; font-weight: 600; }
-        .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 0.8rem; }
-        .report-item { background: #f8fafc; padding: 0.6rem; border-radius: 8px; border: 1px solid #e2e8f0; border-left: 4px solid var(--secondary); }
-        .report-item span { display: block; font-size: 0.65rem; color: #4a5568; font-weight: 600; }
-        .report-item strong { font-size: 0.85rem; color: #1a202c; }
-        .report-highlight { background: #ebf8ff; border: 2px solid #3182ce; padding: 0.8rem; border-radius: 10px; text-align: center; margin-bottom: 0.8rem; }
-        .report-highlight h4 { color: #2b6cb0; font-size: 0.75rem; text-transform: uppercase; }
-        .report-highlight div { font-size: 1.3rem; font-weight: 900; color: #1a365d; }
-        .report-info-box-green { background: #f0fff4; border: 1.5px solid #c6f6d5; padding: 0.8rem; border-radius: 10px; font-size: 0.75rem; }
-        .page-footer-num { text-align: right; font-size: 0.6rem; color: #a0aec0; border-top: 1px solid #edf2f7; padding-top: 0.3rem; margin-top: 0.8rem; }
-        footer { text-align: center; padding: 0.8rem; background: #e2e8f0; color: #718096; font-size: 0.75rem; }
+        #resultat {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9f0fa;
+            border-left: 5px solid #004080;
+            border-radius: 4px;
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-    <div id="loadingOverlay">
-        <div class="scanner-loader"></div>
-        <h3 style="font-size: 1rem;">Analyse thermique en cours...</h3>
+<div class="container">
+    <h2>Ombena ThermoCalc Pro</h2>
+    <p style="text-align: center; font-size: 14px; color: #666;">Ingénierie Thermique & Efficacité Énergétique</p>
+    
+    <div class="form-group">
+        <label for="nomProjet">Nom du Projet :</label>
+        <input type="text" id="nomProjet" placeholder="Ex: Résidence Lumumba">
     </div>
 
-    <!-- MODAL PAIEMENT / TOKENS ÉPUISÉS -->
-    <div id="modalPro" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.8); z-index:10000; justify-content:center; align-items:center; padding: 1rem;">
-        <div style="background:white; padding:1.5rem; border-radius:16px; width:100%; max-width:400px; text-align:center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">⚡ Tokens Épuisés !</h3>
-            <p style="font-size: 0.8rem; color: #4a5568; margin-bottom: 1rem;">Vous avez utilisé vos 10 calculs gratuits. Passez à la version illimitée pour continuer.</p>
-            
-            <a href="https://chariow.com" target="_blank" style="display:block; background:linear-gradient(135deg, #48bb78 0%, #38a169 100%); color:white; padding:0.7rem; text-decoration:none; border-radius:10px; margin-bottom:1rem; font-weight:bold; font-size: 0.9rem;">
-                Débloquer l'Illimité (Payer)
-            </a>
-            
-            <button onclick="document.getElementById('modalPro').style.display='none'" style="background:none; border:none; color:#718096; cursor:pointer; font-size:0.75rem; text-decoration: underline;">
-                Fermer
-            </button>
-        </div>
+    <div class="form-group">
+        <label for="surface">Surface de la paroi (m²) :</label>
+        <input type="number" id="surface" placeholder="Ex: 150">
     </div>
 
-    <header>
-        <h1>Ombena ThermoCalc Pro</h1>
-        <p>Ingénierie Thermique & Efficacité B2B</p>
-    </header>
-
-    <div class="container">
-        <!-- COMPTEUR DE TOKENS -->
-        <div id="compteurTokens" class="token-badge">Tokens gratuits restants : 10</div>
-
-        <!-- ETAPE 1 -->
-        <div id="step1" class="card step-section active">
-            <h2>⚙️ Paramètres du Projet</h2>
-            <div class="input-group">
-                <label>Nom du Projet :</label>
-                <input type="text" id="nomProjet" placeholder="Ex: Résidence Libreville">
-            </div>
-            <div class="input-group">
-                <label>Surface de la paroi (m²) :</label>
-                <input type="number" id="surface" value="150">
-            </div>
-            <div class="input-group">
-                <label>Écart de température (ΔT en °C) :</label>
-                <input type="number" id="deltaT" value="20">
-            </div>
-            <div class="input-group">
-                <label>Résistance thermique (R en m²·K/W) :</label>
-                <input type="number" step="0.1" id="resistance" value="4.0">
-            </div>
-            <div class="input-group">
-                <label>Matériau Isolant :</label>
-                <select id="selectIsolant" onchange="chargerProprietesIsolant()">
-                    <option value="0.035|15|1030|12000">Laine de verre (λ=0.035 | 12k XAF/m²)</option>
-                    <option value="0.032|20|1450|18000">Polystyrène - PSE (λ=0.032 | 18k XAF/m²)</option>
-                    <option value="0.038|50|2100|25000">Fibre de bois (λ=0.038 | 25k XAF/m²)</option>
-                </select>
-            </div>
-            <input type="hidden" id="lambda" value="0.035">
-            <input type="hidden" id="densite" value="15">
-            <input type="hidden" id="chaleurSpecifique" value="1030">
-
-            <button class="btn" onclick="lancerCalculsAvecAnimation()">🚀 Lancer l'Étude Thermique</button>
-        </div>
-
-        <!-- ETAPE 2 (RÉSULTATS) -->
-        <div id="step2" class="step-section">
-            <div class="page-doc">
-                <div class="page-header">
-                    <h3>Certificat d'Expertise Thermique</h3>
-                    <p>Résultats de l'analyse</p>
-                </div>
-                <div class="report-grid">
-                    <div class="report-item"><span>Projet</span><strong id="resNom1">-</strong></div>
-                    <div class="report-item"><span>Surface</span><strong id="resSurface1">-</strong></div>
-                </div>
-                <div class="report-highlight">
-                    <h4>Épaisseur d'Isolant Conseillée</h4>
-                    <div id="resEpaisseur1">-</div>
-                </div>
-                <div class="report-info-box-green">
-                    <h5>Coût estimé des matériaux :</h5>
-                    <strong id="resCout3" style="font-size: 1rem; color: #276749;">-</strong>
-                </div>
-                <div class="page-footer-num">Ombena ThermoCalc Pro</div>
-            </div>
-            <button class="btn" onclick="allerAEtape(1)" style="margin-top:1rem;">Nouveau Calcul</button>
-        </div>
+    <div class="form-group">
+        <label for="deltaT">Écart de température ($\Delta T$ en °C) :</label>
+        <input type="number" id="deltaT" placeholder="Ex: 20">
     </div>
 
-    <footer>
-        &copy; 2026 Ombena ThermoCalc Pro
-    </footer>
+    <div class="form-group">
+        <label for="resistance">Résistance thermique ($R$ en $m^2\cdot K/W$) :</label>
+        <input type="number" step="0.01" id="resistance" placeholder="Ex: 2.5">
+    </div>
 
-    <!-- SCRIPT JS PROPREMENT ENCADRÉ -->
-    <script>
-        // --- SYSTÈME FREEMIUM PAR TOKENS & PAIEMENT AUTOMATIQUE ---
-        function initialiserTokens() {
-            let estPro = localStorage.getItem('ombena_pro');
-            if (estPro === 'true') return "Illimité (Pro)";
+    <button onclick="lancerCalcul()">Lancer l'Étude Thermique</button>
+    <button class="btn-reset" onclick="effacerDonnees()">Effacer les données</button>
 
-            let tokens = localStorage.getItem('ombena_tokens');
-            if (tokens === null) {
-                tokens = 10;
-                localStorage.setItem('ombena_tokens', tokens);
-            }
-            return parseInt(tokens);
+    <div id="resultat">
+        <h3>Résultats de l'Étude</h3>
+        <p id="texteResultat"></p>
+    </div>
+</div>
+
+<script>
+    window.onload = function() {
+        if(localStorage.getItem("nomProjet")) document.getElementById("nomProjet").value = localStorage.getItem("nomProjet");
+        if(localStorage.getItem("surface")) document.getElementById("surface").value = localStorage.getItem("surface");
+        if(localStorage.getItem("deltaT")) document.getElementById("deltaT").value = localStorage.getItem("deltaT");
+        if(localStorage.getItem("resistance")) document.getElementById("resistance").value = localStorage.getItem("resistance");
+    };
+
+    function lancerCalcul() {
+        const nom = document.getElementById("nomProjet").value;
+        const surface = parseFloat(document.getElementById("surface").value);
+        const deltaT = parseFloat(document.getElementById("deltaT").value);
+        const R = parseFloat(document.getElementById("resistance").value);
+
+        if (!surface || !deltaT || !R || R <= 0) {
+            alert("Veuillez remplir correctement tous les champs numériques (R doit être > 0).");
+            return;
         }
 
-        function mettreAJourAffichageTokens() {
-            let tokens = initialiserTokens();
-            let elementCompteur = document.getElementById('compteurTokens');
-            if (elementCompteur) {
-                if (tokens === "Illimité (Pro)") {
-                    elementCompteur.innerText = "⭐ Version Pro Illimitée Active";
-                    elementCompteur.style.background = "#def7ec";
-                    elementCompteur.style.color = "#03543f";
-                } else {
-                    elementCompteur.innerText = "⚡ Tokens gratuits restants : " + tokens + " / 10";
-                }
-            }
-        }
+        localStorage.setItem("nomProjet", nom);
+        localStorage.setItem("surface", surface);
+        localStorage.setItem("deltaT", deltaT);
+        localStorage.setItem("resistance", R);
 
-        function consommerTokenOuVerifierPro() {
-            let estPro = localStorage.getItem('ombena_pro');
-            if (estPro === 'true') return true;
+        const fluxThermique = (surface * deltaT) / R;
+        const coefficientU = 1 / R;
 
-            let tokens = initialiserTokens();
-            if (tokens > 0) {
-                tokens--;
-                localStorage.setItem('ombena_tokens', tokens);
-                mettreAJourAffichageTokens();
-                return true;
-            } else {
-                document.getElementById('modalPro').style.display = 'flex';
-                return false;
-            }
-        }
+        const resDiv = document.getElementById("resultat");
+        const texteRes = document.getElementById("texteResultat");
 
-        function verifierRedirectionPaiement() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('paye') === 'succes') {
-                localStorage.setItem('ombena_pro', 'true');
-                localStorage.removeItem('ombena_tokens');
-                alert("Paiement validé avec succès ! Version Pro activée.");
-                window.location.href = window.location.pathname;
-            }
-        }
+        texteRes.innerHTML = `
+            <strong>Projet :</strong> ${nom || "Non spécifié"}<br>
+            <strong>Coefficient de transmission thermique ($U$) :</strong> ${coefficientU.toFixed(2)} W/(m²·K)<br>
+            <strong>Flux thermique total estimé :</strong> ${fluxThermique.toFixed(2)} W
+        `;
+        resDiv.style.display = "block";
+    }
 
-        window.onload = function() {
-            verifierRedirectionPaiement();
-            mettreAJourAffichageTokens();
-        };
+    function effacerDonnees() {
+        localStorage.clear();
+        document.getElementById("nomProjet").value = "";
+        document.getElementById("surface").value = "";
+        document.getElementById("deltaT").value = "";
+        document.getElementById("resistance").value = "";
+        document.getElementById("resultat").style.display = "none";
+        alert("Données effacées !");
+    }
+</script>
 
-        function chargerProprietesIsolant() {
-            const val = document.getElementById('selectIsolant').value.split('|');
-            document.getElementById('lambda').value = val[0];
-            document.getElementById('densite').value = val[1];
-            document.getElementById('chaleurSpecifique').value = val[2];
-        }
-
-        function lancerCalculsAvecAnimation() {
-            // Vérification des tokens avant de lancer
-            if (!consommerTokenOuVerifierPro()) {
-                return;
-            }
-
-            const surface = parseFloat(document.getElementById('surface').value);
-            const deltaT = parseFloat(document.getElementById('deltaT').value);
-            const resistanceCible = parseFloat(document.getElementById('resistance').value);
-            const lambda = parseFloat(document.getElementById('lambda').value);
-            const nom = document.getElementById('nomProjet').value || "Projet sans nom";
-            const selectVal = document.getElementById('selectIsolant').value.split('|');
-            let prixUnitaireM2 = parseFloat(selectVal[3]);
-
-            if(isNaN(surface) || isNaN(deltaT) || isNaN(resistanceCible) || isNaN(lambda)) {
-                alert("Veuillez remplir correctement tous les champs.");
-                return;
-            }
-
-            const overlay = document.getElementById('loadingOverlay');
-            overlay.style.display = 'flex';
-
-            setTimeout(() => {
-                let epaisseurCm = (resistanceCible * lambda * 100).toFixed(1);
-                let coutEstime = (surface * prixUnitaireM2 * (resistanceCible / 3)).toFixed(0);
-
-                document.getElementById('resNom1').innerText = nom;
-                document.getElementById('resSurface1').innerText = surface + " m²";
-                document.getElementById('resEpaisseur1').innerText = epaisseurCm + " cm";
-                document.getElementById('resCout3').innerText = "~" + Number(coutEstime).toLocaleString() + " XAF";
-
-                overlay.style.display = 'none';
-                allerAEtape(2);
-            }, 600);
-        }
-
-        function allerAEtape(numero) {
-            document.querySelectorAll('.step-section').forEach(el => el.classList.remove('active'));
-            document.getElementById('step' + numero).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
 </body>
 </html>
-
