@@ -160,7 +160,6 @@
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
         }
-        /* Bouton Recommencer élégant et discret */
         .btn-danger {
             background: #fff;
             color: #ef4444;
@@ -202,13 +201,11 @@
 <body>
 
 <div class="container">
-    <!-- En-tête -->
     <div class="app-header">
         <h2>Ombena ThermoCalc</h2>
         <div class="subtitle">Performance Énergétique</div>
     </div>
     
-    <!-- Indicateur d'étapes -->
     <div class="stepper">
         <div class="step-indicator active" id="ind-1">1. Projet</div>
         <div class="step-indicator" id="ind-2">2. Paramètre</div>
@@ -362,33 +359,39 @@
         doc.setFontSize(11);
         doc.text("Nom du Projet :", 15, 66);
         doc.setFont("helvetica", "bold");
-        doc.text(donneesEtude.nomProjet, 55, 66);
+        doc.text(donneesEtude.nomProjet || document.getElementById("nomProjet").value || "Projet", 55, 66);
 
         doc.setFont("helvetica", "normal");
         doc.text("Maître d'Ouvrage :", 15, 74);
         doc.setFont("helvetica", "bold");
-        doc.text(donneesEtude.nomClient, 55, 74);
+        doc.text(donneesEtude.nomClient || document.getElementById("nomClient").value || "Client", 55, 74);
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(13);
         doc.text("2. Paramètres Thermiques de la Paroi", 15, 94);
         doc.line(15, 98, 195, 98);
 
+        const surf = donneesEtude.surface || document.getElementById("surface").value || 0;
+        const dt = donneesEtude.deltaT || document.getElementById("deltaT").value || 0;
+        const res = donneesEtude.R || document.getElementById("resistance").value || 1;
+        const flux = donneesEtude.fluxThermique || ((surf * dt) / res);
+        const u = donneesEtude.coefficientU || (1 / res);
+
         doc.setFont("helvetica", "normal");
         doc.setFontSize(11);
         doc.text("- Surface de la paroi :", 20, 108);
         doc.setFont("helvetica", "bold");
-        doc.text(donneesEtude.surface + " m²", 85, 108);
+        doc.text(surf + " m²", 85, 108);
 
         doc.setFont("helvetica", "normal");
         doc.text("- Écart de température (ΔT) :", 20, 116);
         doc.setFont("helvetica", "bold");
-        doc.text(donneesEtude.deltaT + " °C", 85, 116);
+        doc.text(dt + " °C", 85, 116);
 
         doc.setFont("helvetica", "normal");
         doc.text("- Résistance thermique (R) :", 20, 124);
         doc.setFont("helvetica", "bold");
-        doc.text(donneesEtude.R + " m²·K/W", 85, 124);
+        doc.text(res + " m²·K/W", 85, 124);
 
         doc.setFillColor(240, 253, 244);
         doc.setDrawColor(16, 185, 129);
@@ -403,20 +406,20 @@
         doc.setFontSize(11);
         doc.text("Coefficient U (Transmission) :", 22, 162);
         doc.setFont("helvetica", "bold");
-        doc.text(donneesEtude.coefficientU.toFixed(2) + " W/(m²·K)", 115, 162);
+        doc.text(Number(u).toFixed(2) + " W/(m²·K)", 115, 162);
 
         doc.setFont("helvetica", "normal");
         doc.text("Flux Thermique Total :", 22, 172);
         doc.setFont("helvetica", "bold");
-        doc.text(donneesEtude.fluxThermique.toFixed(2) + " W", 115, 172);
+        doc.text(Number(flux).toFixed(2) + " W", 115, 172);
 
         doc.setFont("helvetica", "italic");
         doc.setFontSize(8);
         doc.setTextColor(150, 150, 150);
         doc.text("Document généré officiellement par Ombena ThermoCalc Pro - Conçu par Ombena", 15, 285);
 
-        doc.output('dataurlnewwindow');
-        doc.save(`Rapport_Thermique_${donneesEtude.nomProjet.replace(/\s+/g, '_')}.pdf`);
+        // Téléchargement direct sans ouvrir d'onglet blanc
+        doc.save(`Rapport_Thermique.pdf`);
     }
 
     function effacerDonnees() {
