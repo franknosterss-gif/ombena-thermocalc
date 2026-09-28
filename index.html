@@ -26,16 +26,15 @@
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
-            overflow: hidden; /* Empêche tout défilement parasite de la page */
+            overflow: hidden;
         }
-        /* Conteneur principal à taille fixe et absolument stable */
         .container {
             width: 100%;
             max-width: 400px;
-            height: 560px; /* Hauteur verrouillée pour une stabilité parfaite */
+            height: 570px;
             background: var(--card-bg);
             border-radius: 24px;
-            padding: 24px;
+            padding: 22px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             box-sizing: border-box;
             display: flex;
@@ -46,7 +45,7 @@
         .app-header {
             text-align: center;
             border-bottom: 1px solid #f1f5f9;
-            padding-bottom: 12px;
+            padding-bottom: 10px;
         }
         h2 {
             color: var(--primary);
@@ -62,13 +61,12 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        /* Stepper fixe et aligné */
         .stepper {
             display: flex;
             justify-content: space-between;
-            margin: 12px 0;
+            margin: 10px 0;
             background: #f8fafc;
-            padding: 6px;
+            padding: 5px;
             border-radius: 12px;
         }
         .step-indicator {
@@ -90,7 +88,6 @@
         .step-indicator.completed {
             color: #10b981;
         }
-        /* Corps des étapes fixe */
         .step-content {
             flex: 1;
             display: none;
@@ -104,21 +101,21 @@
             color: #334155;
             font-size: 15px;
             font-weight: 700;
-            margin: 0 0 16px 0;
+            margin: 0 0 12px 0;
         }
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: 600;
             font-size: 12px;
             color: #475569;
         }
         input {
             width: 100%;
-            padding: 11px 14px;
+            padding: 10px 14px;
             border: 2px solid #e2e8f0;
             border-radius: 10px;
             box-sizing: border-box;
@@ -133,12 +130,11 @@
             outline: none;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
-        /* Boutons fixés en bas de la carte */
         .btn-container {
             display: flex;
             gap: 8px;
             margin-top: auto;
-            padding-top: 10px;
+            padding-top: 8px;
         }
         button {
             flex: 1;
@@ -164,28 +160,41 @@
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
         }
+        /* Bouton Recommencer élégant et discret */
         .btn-danger {
-            background: #ef4444;
-            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
+            background: #fff;
+            color: #ef4444;
+            border: 2px solid #fee2e2;
+            box-shadow: none;
             width: 100%;
             margin-top: 8px;
+            padding: 10px;
+            font-size: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-danger:hover {
+            background: #fef2f2;
+            border-color: #fca5a5;
         }
         .result-card {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
             border-left: 4px solid #10b981;
-            padding: 12px 14px;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 8px;
         }
         .result-card h4 {
             margin: 0 0 8px 0;
             color: #065f46;
             font-size: 13px;
+            font-weight: 700;
         }
         .result-card p {
-            margin: 4px 0;
-            font-size: 12px;
+            margin: 5px 0;
+            font-size: 13px;
             color: #166534;
         }
     </style>
@@ -255,11 +264,11 @@
             <p id="resFlux"><strong>Flux thermique :</strong> -</p>
         </div>
 
-        <div class="btn-container" style="margin-top: 5px;">
+        <div class="btn-container" style="margin-top: 4px;">
             <button class="btn-secondary" onclick="allerEtape(2)">Modifier</button>
-            <button class="btn-pdf" onclick="telechargerPDFSpectaculaire()">PDF</button>
+            <button class="btn-pdf" onclick="telechargerPDFSpectaculaire()">Télécharger PDF</button>
         </div>
-        <button class="btn-danger" onclick="effacerDonnees()">Recommencer</button>
+        <button class="btn-danger" onclick="effacerDonnees()">🔄 Recommencer une autre étude</button>
     </div>
 </div>
 
