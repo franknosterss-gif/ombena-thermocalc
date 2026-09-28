@@ -37,7 +37,6 @@
         header h1 {
             font-size: 1.3rem;
             font-weight: 800;
-            letter-spacing: 0.5px;
         }
         header p {
             font-size: 0.75rem;
@@ -65,9 +64,6 @@
             font-size: 1rem;
             border-bottom: 2px solid #edf2f7;
             padding-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
         .input-group {
             margin-bottom: 0.7rem;
@@ -87,18 +83,12 @@
             font-size: 0.85rem;
             background: #fdfdfd;
         }
-        .input-group input:focus, .input-group select:focus {
-            border-color: var(--secondary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.15);
-        }
         .btn {
             display: block;
             background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
             color: white;
             padding: 0.7rem 1rem;
             border-radius: 10px;
-            text-decoration: none;
             font-weight: bold;
             border: none;
             cursor: pointer;
@@ -108,17 +98,22 @@
             margin-top: 0.8rem;
             box-shadow: 0 4px 15px rgba(42, 82, 152, 0.3);
         }
-        .btn:active { transform: scale(0.98); }
-        .btn-success { background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3); }
-        .btn-secondary { background: #718096; box-shadow: none; }
-        .btn-warning { background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); box-shadow: 0 4px 15px rgba(221, 107, 32, 0.3); }
-
+        .btn-success { background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); }
+        .btn-secondary { background: #718096; }
+        .btn-warning { background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); }
         .step-section { display: none; }
-        .step-section.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+        .step-section.active { display: block; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
+        .token-badge {
+            background: #ebf8ff;
+            color: #2b6cb0;
+            border: 1px solid #90cdf4;
+            padding: 0.4rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
         }
 
         #loadingOverlay {
@@ -133,7 +128,7 @@
             color: white;
         }
         .scanner-loader {
-            width: 60px; height: 60px;
+            width: 50px; height: 50px;
             border: 4px solid rgba(255,255,255,0.1);
             border-top: 4px solid #63b3ed;
             border-radius: 50%;
@@ -147,7 +142,6 @@
             border: 2px solid var(--primary);
             border-radius: 16px;
             background: #ffffff;
-            box-shadow: 0 10px 25px rgba(30, 60, 114, 0.08);
         }
         .page-header {
             text-align: center;
@@ -155,394 +149,175 @@
             padding-bottom: 0.6rem;
             margin-bottom: 0.8rem;
         }
-        .page-header h3 {
-            color: var(--primary);
-            font-size: 1.05rem;
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-        .page-header p {
-            color: #4a5568;
-            font-size: 0.7rem;
-            margin-top: 0.1rem;
-            font-weight: 600;
-        }
-        .page-footer-num {
-            text-align: right;
-            font-size: 0.6rem;
-            color: #a0aec0;
-            border-top: 1px solid #edf2f7;
-            padding-top: 0.3rem;
-            margin-top: 0.8rem;
-        }
-        .report-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
-            margin-bottom: 0.8rem;
-        }
-        .report-item {
-            background: #f8fafc;
-            padding: 0.6rem;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            border-left: 4px solid var(--secondary);
-        }
-        .report-item span {
-            display: block;
-            font-size: 0.65rem;
-            color: #4a5568;
-            font-weight: 600;
-            margin-bottom: 0.1rem;
-        }
-        .report-item strong {
-            font-size: 0.85rem;
-            color: #1a202c;
-            font-weight: 700;
-            word-break: break-word;
-        }
-        .report-highlight {
-            background: linear-gradient(135deg, #ebf8ff 0%, #e1effe 100%);
-            border: 2px solid #3182ce;
-            padding: 0.8rem;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 0.8rem;
-        }
-        .report-highlight h4 {
-            color: #2b6cb0;
-            font-size: 0.75rem;
-            margin-bottom: 0.2rem;
-            text-transform: uppercase;
-        }
-        .report-highlight div {
-            font-size: 1.3rem;
-            font-weight: 900;
-            color: #1a365d;
-        }
-        /* ENCADRE VERT EMERAUDE UNIFORME */
-        .report-info-box-green {
-            background: #f0fff4;
-            border: 1.5px solid #c6f6d5;
-            padding: 0.8rem;
-            border-radius: 10px;
-            margin-bottom: 0.8rem;
-            font-size: 0.75rem;
-            line-height: 1.3;
-        }
-        .report-info-box-green h5 {
-            color: #276749;
-            margin-bottom: 0.3rem;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .svg-container {
-            text-align: center;
-            margin: 0.5rem 0;
-        }
-        .history-table {
-            width: 100%;
-            font-size: 0.75rem;
-            border-collapse: collapse;
-            margin-top: 0.5rem;
-        }
-        .history-table th, .history-table td {
-            border: 1px solid #cbd5e0;
-            padding: 6px;
-            text-align: left;
-        }
-        .history-table th { background: #edf2f7; color: #2d3748; }
-
-        footer {
-            text-align: center;
-            padding: 0.8rem;
-            background: #e2e8f0;
-            color: #718096;
-            font-size: 0.75rem;
-        }
-
-        @media print {
-            @page { size: A4; margin: 1cm; }
-            body { background: white !important; margin: 0 !important; }
-            header, .container, footer, #loadingOverlay { display: none !important; }
-            .print-container { display: block !important; }
-            .pdf-page {
-                height: 25.5cm;
-                box-sizing: border-box;
-                page-break-inside: avoid;
-                break-inside: avoid;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                padding: 1cm;
-                border: 3px solid #1e3c72;
-                background: white;
-            }
-            .pdf-page:not(:first-child) {
-                page-break-before: always;
-                break-before: page;
-            }
-            .pdf-header {
-                text-align: center;
-                border-bottom: 3px solid #1e3c72;
-                padding-bottom: 0.6rem;
-                margin-bottom: 0.8rem;
-            }
-            .pdf-header h2 { color: #1e3c72; font-size: 1.5rem; text-transform: uppercase; margin-bottom: 0.2rem; }
-            .pdf-header p { color: #4a5568; font-size: 0.85rem; font-weight: 600; }
-            .pdf-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
-                margin-bottom: 0.8rem;
-            }
-            .pdf-item {
-                background: #f8fafc;
-                padding: 0.7rem;
-                border-radius: 6px;
-                border: 1px solid #cbd5e0;
-                border-left: 4px solid #2a5298;
-            }
-            .pdf-item span { display: block; font-size: 0.75rem; color: #4a5568; font-weight: 600; margin-bottom: 0.2rem; }
-            .pdf-item strong { font-size: 1rem; color: #1a202c; }
-            .pdf-highlight {
-                background: #ebf8ff;
-                border: 2px solid #3182ce;
-                padding: 1rem;
-                border-radius: 8px;
-                text-align: center;
-                margin-bottom: 0.8rem;
-            }
-            .pdf-highlight h3 { color: #2b6cb0; font-size: 0.95rem; margin-bottom: 0.3rem; text-transform: uppercase; }
-            .pdf-highlight div { font-size: 1.8rem; font-weight: 900; color: #1a365d; }
-            .pdf-box-green {
-                background: #f0fff4;
-                border: 1.5px solid #c6f6d5;
-                padding: 0.9rem;
-                border-radius: 8px;
-                margin-bottom: 0.8rem;
-                font-size: 0.9rem;
-                line-height: 1.3;
-            }
-            .pdf-box-green h4 { color: #276749; margin-bottom: 0.3rem; font-size: 1rem; font-weight: 700; }
-            .pdf-footer {
-                text-align: right;
-                font-size: 0.7rem;
-                color: #a0aec0;
-                border-top: 1px solid #e2e8f0;
-                padding-top: 0.3rem;
-            }
-        }
+        .page-header h3 { color: var(--primary); font-size: 1.05rem; text-transform: uppercase; }
+        .page-header p { color: #4a5568; font-size: 0.7rem; font-weight: 600; }
+        .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 0.8rem; }
+        .report-item { background: #f8fafc; padding: 0.6rem; border-radius: 8px; border: 1px solid #e2e8f0; border-left: 4px solid var(--secondary); }
+        .report-item span { display: block; font-size: 0.65rem; color: #4a5568; font-weight: 600; }
+        .report-item strong { font-size: 0.85rem; color: #1a202c; }
+        .report-highlight { background: #ebf8ff; border: 2px solid #3182ce; padding: 0.8rem; border-radius: 10px; text-align: center; margin-bottom: 0.8rem; }
+        .report-highlight h4 { color: #2b6cb0; font-size: 0.75rem; text-transform: uppercase; }
+        .report-highlight div { font-size: 1.3rem; font-weight: 900; color: #1a365d; }
+        .report-info-box-green { background: #f0fff4; border: 1.5px solid #c6f6d5; padding: 0.8rem; border-radius: 10px; font-size: 0.75rem; }
+        .page-footer-num { text-align: right; font-size: 0.6rem; color: #a0aec0; border-top: 1px solid #edf2f7; padding-top: 0.3rem; margin-top: 0.8rem; }
+        footer { text-align: center; padding: 0.8rem; background: #e2e8f0; color: #718096; font-size: 0.75rem; }
     </style>
 </head>
 <body>
 
     <div id="loadingOverlay">
         <div class="scanner-loader"></div>
-        <h3 style="font-size: 1rem; font-weight: 600;">Analyse thermique en cours...</h3>
-        <p style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.3rem;">Calcul des flux et génération du certificat B2B</p>
+        <h3 style="font-size: 1rem;">Analyse thermique en cours...</h3>
+    </div>
+
+    <!-- MODAL PAIEMENT / TOKENS ÉPUISÉS -->
+    <div id="modalPro" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.8); z-index:10000; justify-content:center; align-items:center; padding: 1rem;">
+        <div style="background:white; padding:1.5rem; border-radius:16px; width:100%; max-width:400px; text-align:center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">⚡ Tokens Épuisés !</h3>
+            <p style="font-size: 0.8rem; color: #4a5568; margin-bottom: 1rem;">Vous avez utilisé vos 10 calculs gratuits. Passez à la version illimitée pour continuer.</p>
+            
+            <a href="https://chariow.com" target="_blank" style="display:block; background:linear-gradient(135deg, #48bb78 0%, #38a169 100%); color:white; padding:0.7rem; text-decoration:none; border-radius:10px; margin-bottom:1rem; font-weight:bold; font-size: 0.9rem;">
+                Débloquer l'Illimité (Payer)
+            </a>
+            
+            <button onclick="document.getElementById('modalPro').style.display='none'" style="background:none; border:none; color:#718096; cursor:pointer; font-size:0.75rem; text-decoration: underline;">
+                Fermer
+            </button>
+        </div>
     </div>
 
     <header>
         <h1>Ombena ThermoCalc Pro</h1>
-        <p>Ingénierie Thermique & Efficacité B2B — Ultimate</p>
+        <p>Ingénierie Thermique & Efficacité B2B</p>
     </header>
 
     <div class="container">
+        <!-- COMPTEUR DE TOKENS -->
+        <div id="compteurTokens" class="token-badge">Tokens gratuits restants : 10</div>
+
         <!-- ETAPE 1 -->
         <div id="step1" class="card step-section active">
-            <h2>⚙️ Paramètres & Base de Données</h2>
+            <h2>⚙️ Paramètres du Projet</h2>
             <div class="input-group">
-                <label for="nomProjet">Nom du Projet / Chantier :</label>
-                <input type="text" id="nomProjet" placeholder="Ex: Résidence Ombena - Libreville">
+                <label>Nom du Projet :</label>
+                <input type="text" id="nomProjet" placeholder="Ex: Résidence Libreville">
             </div>
             <div class="input-group">
-                <label for="surface">Surface de la paroi (m²) :</label>
-                <input type="number" id="surface" value="150" placeholder="Ex: 150">
+                <label>Surface de la paroi (m²) :</label>
+                <input type="number" id="surface" value="150">
             </div>
             <div class="input-group">
-                <label for="deltaT">Écart de température (ΔT en °C) :</label>
-                <input type="number" id="deltaT" value="20" placeholder="Ex: 20">
+                <label>Écart de température (ΔT en °C) :</label>
+                <input type="number" id="deltaT" value="20">
             </div>
             <div class="input-group">
-                <label for="resistance">Résistance thermique cible (R en m²·K/W) :</label>
-                <input type="number" step="0.1" id="resistance" value="4.0" placeholder="Ex: 4.0">
+                <label>Résistance thermique (R en m²·K/W) :</label>
+                <input type="number" step="0.1" id="resistance" value="4.0">
             </div>
             <div class="input-group">
-                <label for="selectIsolant">Matériau Isolant (Industriel & Écolo) :</label>
+                <label>Matériau Isolant :</label>
                 <select id="selectIsolant" onchange="chargerProprietesIsolant()">
-                    <option value="0.035|15|1030|12000">Laine de verre / Laine de roche (λ=0.035 | 12k XAF/m²)</option>
-                    <option value="0.032|20|1450|18000">Polystyrène expansé - PSE (λ=0.032 | 18k XAF/m²)</option>
-                    <option value="0.038|50|2100|25000">Fibre de bois (Écolo. | λ=0.038 | 25k XAF/m²)</option>
-                    <option value="0.022|30|1400|35000">Polyuréthane - PUR (λ=0.022 | 35k XAF/m²)</option>
-                    <option value="0.040|40|1700|22000">Liège expansé (Écolo. | λ=0.040 | 22k XAF/m²)</option>
+                    <option value="0.035|15|1030|12000">Laine de verre (λ=0.035 | 12k XAF/m²)</option>
+                    <option value="0.032|20|1450|18000">Polystyrène - PSE (λ=0.032 | 18k XAF/m²)</option>
+                    <option value="0.038|50|2100|25000">Fibre de bois (λ=0.038 | 25k XAF/m²)</option>
                 </select>
             </div>
-            <div class="input-group">
-                <label for="lambda">Conductivité thermique (λ en W/m·K) :</label>
-                <input type="number" step="0.001" id="lambda" value="0.035">
-            </div>
-            <div class="input-group">
-                <label for="densite">Masse volumique (ρ en kg/m³) :</label>
-                <input type="number" id="densite" value="15">
-            </div>
-            <div class="input-group">
-                <label for="chaleurSpecifique">Chaleur spécifique (c en J/kg·K) :</label>
-                <input type="number" id="chaleurSpecifique" value="1030">
-            </div>
-            <button class="btn" onclick="lancerCalculsAvecAnimation()">🚀 Lancer l'Étude Thermique Pro</button>
-            <button class="btn btn-warning" onclick="voirHistorique()" style="margin-top:0.5rem;">📂 Consulter l'Historique Local</button>
+            <input type="hidden" id="lambda" value="0.035">
+            <input type="hidden" id="densite" value="15">
+            <input type="hidden" id="chaleurSpecifique" value="1030">
+
+            <button class="btn" onclick="lancerCalculsAvecAnimation()">🚀 Lancer l'Étude Thermique</button>
         </div>
 
-        <!-- HISTORIQUE -->
-        <div id="stepHistory" class="card step-section">
-            <h2>📂 Historique des Projets Sauvegardés</h2>
-            <div id="historiqueContenu" style="max-height: 220px; overflow-y: auto;"></div>
-            <button class="btn btn-secondary" onclick="viderHistorique()" style="margin-top:0.5rem;">Vider l'historique</button>
-            <button class="btn" onclick="allerAEtape(1)" style="margin-top:0.4rem;">Retour au Formulaire</button>
-        </div>
-
-        <!-- ETAPE 2 (PAGE 1) -->
+        <!-- ETAPE 2 (RÉSULTATS) -->
         <div id="step2" class="step-section">
             <div class="page-doc">
                 <div class="page-header">
                     <h3>Certificat d'Expertise Thermique</h3>
-                    <p>Ombena ThermoCalc Pro — Édition B2B (Page 1/3)</p>
+                    <p>Résultats de l'analyse</p>
                 </div>
                 <div class="report-grid">
-                    <div class="report-item"><span>Projet / N° Série</span><strong id="resNom1">-</strong></div>
-                    <div class="report-item"><span>Date de l'analyse</span><strong id="resDate1">-</strong></div>
-                    <div class="report-item"><span>Surface de la paroi</span><strong id="resSurface1">-</strong></div>
-                    <div class="report-item"><span>Écart Delta T</span><strong id="resDeltaT1">-</strong></div>
+                    <div class="report-item"><span>Projet</span><strong id="resNom1">-</strong></div>
+                    <div class="report-item"><span>Surface</span><strong id="resSurface1">-</strong></div>
                 </div>
                 <div class="report-highlight">
                     <h4>Épaisseur d'Isolant Conseillée</h4>
                     <div id="resEpaisseur1">-</div>
                 </div>
-                <!-- ENCADRE VERT EMERAUDE -->
                 <div class="report-info-box-green">
-                    <h5>Synthèse Exécutive & Caractéristiques</h5>
-                    <p id="resDescMat">-</p>
+                    <h5>Coût estimé des matériaux :</h5>
+                    <strong id="resCout3" style="font-size: 1rem; color: #276749;">-</strong>
                 </div>
-                <div class="page-footer-num">Page 1 sur 3 — Ombena ThermoCalc Pro</div>
+                <div class="page-footer-num">Ombena ThermoCalc Pro</div>
             </div>
-            <button class="btn" onclick="allerAEtape(3)">Passer à la Page 2 (Flux & Graphiques)</button>
-            <button class="btn btn-secondary" onclick="allerAEtape(1)">Modifier les paramètres</button>
-        </div>
-
-        <!-- ETAPE 3 (PAGE 2) -->
-        <div id="step3" class="step-section">
-            <div class="page-doc">
-                <div class="page-header">
-                    <h3>Techniques et Flux Détaillés</h3>
-                    <p>Analyse de performance & Répartition (Page 2/3)</p>
-                </div>
-                <div class="report-grid">
-                    <div class="report-item"><span>Coefficient U</span><strong id="resU2">-</strong></div>
-                    <div class="report-item"><span>Flux Thermique</span><strong id="resFlux2">-</strong></div>
-                    <div class="report-item"><span>Résistance (R)</span><strong id="resR2">-</strong></div>
-                    <div class="report-item"><span>Décrémentation Thermique</span><strong id="resDecr2">-</strong></div>
-                </div>
-                <div class="svg-container" id="svgGraphContainer"></div>
-                <div class="page-footer-num">Page 2 sur 3 — Ombena ThermoCalc Pro</div>
-            </div>
-            <button class="btn" onclick="allerAEtape(4)">Passer à la Page 3 (Financier & Validation)</button>
-            <button class="btn btn-secondary" onclick="allerAEtape(2)">Retour Page 1</button>
-        </div>
-
-        <!-- ETAPE 4 (PAGE 3) -->
-        <div id="step4" class="step-section">
-            <div class="page-doc">
-                <div class="page-header">
-                    <h3>Estimation Financière & Validation</h3>
-                    <p>Rapport budgétaire et clôture (Page 3/3)</p>
-                </div>
-                <div class="report-info-box-green">
-                    <h5>Estimation Budgétaire des Matériaux</h5>
-                    <p>Le coût prévisionnel s'élève à :</p>
-                    <div id="resCout3" style="font-size: 1.2rem; font-weight: 900; color: #276749; margin-top: 0.3rem;">-</div>
-                </div>
-                <div style="margin-top: 0.8rem; border-top: 2px dashed #cbd5e0; padding-top: 0.5rem;">
-                    <p style="font-size: 0.7rem; color: #718096;" id="resSerialBox"><strong>N° de Série Infalsifiable :</strong> -</p>
-                    <div style="height: 25px; border-bottom: 1px solid #cbd5e0; width: 120px; margin-top: 2px;"></div>
-                </div>
-                <div class="page-footer-num">Page 3 sur 3 — Ombena ThermoCalc Pro</div>
-            </div>
-            <button class="btn btn-success" onclick="telechargerPDF()">🖨️ Télécharger le Rapport PDF Complet</button>
-            <button class="btn btn-secondary" onclick="allerAEtape(3)">Retour Page 2</button>
-        </div>
-    </div>
-
-    <!-- CONTENEUR PDF STRICT (3 PAGES) -->
-    <div class="print-container" style="display:none;">
-        <div class="pdf-page">
-            <div class="pdf-header">
-                <h2>Certificat d'Expertise Thermique</h2>
-                <p>Ombena ThermoCalc Pro — Édition B2B (Page 1/3)</p>
-            </div>
-            <div>
-                <div class="pdf-grid">
-                    <div class="pdf-item"><span>Projet / N° Série</span><strong id="printResNom1">-</strong></div>
-                    <div class="pdf-item"><span>Date de l'analyse</span><strong id="printResDate1">-</strong></div>
-                    <div class="pdf-item"><span>Surface de la paroi</span><strong id="printResSurface1">-</strong></div>
-                    <div class="pdf-item"><span>Écart Delta T</span><strong id="printResDeltaT1">-</strong></div>
-                </div>
-                <div class="pdf-highlight">
-                    <h3>Épaisseur d'Isolant Conseillée</h3>
-                    <div id="printResEpaisseur1">-</div>
-                </div>
-                <div class="pdf-box-green">
-                    <h4>Synthèse Exécutive & Caractéristiques</h4>
-                    <p id="printResDescMat">-</p>
-                </div>
-            </div>
-            <div class="pdf-footer">Page 1 sur 3 — Ombena ThermoCalc Pro</div>
-        </div>
-
-        <div class="pdf-page">
-            <div class="pdf-header">
-                <h2>Techniques et Flux Détaillés</h2>
-                <p>Analyse de performance & Répartition (Page 2/3)</p>
-            </div>
-            <div>
-                <div class="pdf-grid">
-                    <div class="pdf-item"><span>Coefficient U</span><strong id="printResU2">-</strong></div>
-                    <div class="pdf-item"><span>Flux Thermique</span><strong id="printResFlux2">-</strong></div>
-                    <div class="pdf-item"><span>Résistance (R)</span><strong id="printResR2">-</strong></div>
-                    <div class="pdf-item"><span>Décrémentation Thermique</span><strong id="printResDecr2">-</strong></div>
-                </div>
-                <div class="svg-container" id="printSvgGraphContainer"></div>
-            </div>
-            <div class="pdf-footer">Page 2 sur 3 — Ombena ThermoCalc Pro</div>
-        </div>
-
-        <div class="pdf-page">
-            <div class="pdf-header">
-                <h2>Estimation Financière & Validation</h2>
-                <p>Rapport budgétaire et clôture (Page 3/3)</p>
-            </div>
-            <div>
-                <div class="pdf-box-green">
-                    <h4>Estimation Budgétaire des Matériaux</h4>
-                    <p>Le coût prévisionnel d'acquisition s'élève à :</p>
-                    <div id="printResCout3" style="font-size: 1.5rem; font-weight: 900; color: #276749; margin-top: 0.3rem;">-</div>
-                </div>
-                <div style="margin-top: 1rem; border-top: 2px dashed #cbd5e0; padding-top: 0.6rem;">
-                    <p style="font-size: 0.8rem; color: #718096; margin-bottom: 0.8rem;" id="printResSerialBox"><strong>N° de Série :</strong> -</p>
-                    <p style="font-size: 0.7rem; color: #a0aec0;">Signature / Cachet :</p>
-                    <div style="height: 35px; border-bottom: 1px solid #cbd5e0; width: 150px; margin-top: 3px;"></div>
-                </div>
-            </div>
-            <div class="pdf-footer">Page 3 sur 3 — Ombena ThermoCalc Pro</div>
+            <button class="btn" onclick="allerAEtape(1)" style="margin-top:1rem;">Nouveau Calcul</button>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 Ombena ThermoCalc Pro - Ultimate B2B Engine
+        &copy; 2026 Ombena ThermoCalc Pro
     </footer>
 
+    <!-- SCRIPT JS PROPREMENT ENCADRÉ -->
     <script>
+        // --- SYSTÈME FREEMIUM PAR TOKENS & PAIEMENT AUTOMATIQUE ---
+        function initialiserTokens() {
+            let estPro = localStorage.getItem('ombena_pro');
+            if (estPro === 'true') return "Illimité (Pro)";
+
+            let tokens = localStorage.getItem('ombena_tokens');
+            if (tokens === null) {
+                tokens = 10;
+                localStorage.setItem('ombena_tokens', tokens);
+            }
+            return parseInt(tokens);
+        }
+
+        function mettreAJourAffichageTokens() {
+            let tokens = initialiserTokens();
+            let elementCompteur = document.getElementById('compteurTokens');
+            if (elementCompteur) {
+                if (tokens === "Illimité (Pro)") {
+                    elementCompteur.innerText = "⭐ Version Pro Illimitée Active";
+                    elementCompteur.style.background = "#def7ec";
+                    elementCompteur.style.color = "#03543f";
+                } else {
+                    elementCompteur.innerText = "⚡ Tokens gratuits restants : " + tokens + " / 10";
+                }
+            }
+        }
+
+        function consommerTokenOuVerifierPro() {
+            let estPro = localStorage.getItem('ombena_pro');
+            if (estPro === 'true') return true;
+
+            let tokens = initialiserTokens();
+            if (tokens > 0) {
+                tokens--;
+                localStorage.setItem('ombena_tokens', tokens);
+                mettreAJourAffichageTokens();
+                return true;
+            } else {
+                document.getElementById('modalPro').style.display = 'flex';
+                return false;
+            }
+        }
+
+        function verifierRedirectionPaiement() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('paye') === 'succes') {
+                localStorage.setItem('ombena_pro', 'true');
+                localStorage.removeItem('ombena_tokens');
+                alert("Paiement validé avec succès ! Version Pro activée.");
+                window.location.href = window.location.pathname;
+            }
+        }
+
+        window.onload = function() {
+            verifierRedirectionPaiement();
+            mettreAJourAffichageTokens();
+        };
+
         function chargerProprietesIsolant() {
             const val = document.getElementById('selectIsolant').value.split('|');
             document.getElementById('lambda').value = val[0];
@@ -550,34 +325,22 @@
             document.getElementById('chaleurSpecifique').value = val[2];
         }
 
-        function genererSVGReperage(fluxMurs, fluxToiture, fluxPlancher) {
-            let total = fluxMurs + fluxToiture + fluxPlancher;
-            let pMurs = Math.round((fluxMurs / total) * 100);
-            let pToiture = Math.round((fluxToiture / total) * 100);
-            let pPlancher = Math.round((fluxPlancher / total) * 100);
-
-            return `
-                <svg width="100%" height="130" viewBox="0 0 350 130" style="background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0;">
-                    <text x="15" y="20" font-size="11" font-weight="bold" fill="#1e3c72">Répartition des Déperditions Thermiques (%)</text>
-                    <text x="15" y="45" font-size="9" fill="#4a5568">Murs (${pMurs}%)</text>
-                    <rect x="90" y="37" width="${pMurs * 2.2}" height="10" rx="3" fill="#2a5298"/>
-                    <text x="15" y="70" font-size="9" fill="#4a5568">Toiture (${pToiture}%)</text>
-                    <rect x="90" y="62" width="${pToiture * 2.2}" height="10" rx="3" fill="#3182ce"/>
-                    <text x="15" y="95" font-size="9" fill="#4a5568">Plancher (${pPlancher}%)</text>
-                    <rect x="90" y="87" width="${pPlancher * 2.2}" height="10" rx="3" fill="#48bb78"/>
-                    <text x="15" y="118" font-size="8" fill="#718096">Modèle énergétique validé — Ombena ThermoCalc Pro</text>
-                </svg>
-            `;
-        }
-
         function lancerCalculsAvecAnimation() {
+            // Vérification des tokens avant de lancer
+            if (!consommerTokenOuVerifierPro()) {
+                return;
+            }
+
             const surface = parseFloat(document.getElementById('surface').value);
             const deltaT = parseFloat(document.getElementById('deltaT').value);
             const resistanceCible = parseFloat(document.getElementById('resistance').value);
             const lambda = parseFloat(document.getElementById('lambda').value);
+            const nom = document.getElementById('nomProjet').value || "Projet sans nom";
+            const selectVal = document.getElementById('selectIsolant').value.split('|');
+            let prixUnitaireM2 = parseFloat(selectVal[3]);
 
-            if(isNaN(surface) || isNaN(deltaT) || isNaN(resistanceCible) || isNaN(lambda) || resistanceCible <= 0 || lambda <= 0) {
-                alert("Veuillez remplir correctement tous les champs numériques.");
+            if(isNaN(surface) || isNaN(deltaT) || isNaN(resistanceCible) || isNaN(lambda)) {
+                alert("Veuillez remplir correctement tous les champs.");
                 return;
             }
 
@@ -585,103 +348,23 @@
             overlay.style.display = 'flex';
 
             setTimeout(() => {
-                lancerCalculsReels();
+                let epaisseurCm = (resistanceCible * lambda * 100).toFixed(1);
+                let coutEstime = (surface * prixUnitaireM2 * (resistanceCible / 3)).toFixed(0);
+
+                document.getElementById('resNom1').innerText = nom;
+                document.getElementById('resSurface1').innerText = surface + " m²";
+                document.getElementById('resEpaisseur1').innerText = epaisseurCm + " cm";
+                document.getElementById('resCout3').innerText = "~" + Number(coutEstime).toLocaleString() + " XAF";
+
                 overlay.style.display = 'none';
-            }, 700);
-        }
-
-        function lancerCalculsReels() {
-            const surface = parseFloat(document.getElementById('surface').value);
-            const deltaT = parseFloat(document.getElementById('deltaT').value);
-            const resistanceCible = parseFloat(document.getElementById('resistance').value);
-            const lambda = parseFloat(document.getElementById('lambda').value);
-            const densite = parseFloat(document.getElementById('densite').value);
-            const chaleurSpecifique = parseFloat(document.getElementById('chaleurSpecifique').value);
-            const nom = document.getElementById('nomProjet').value || "Projet sans nom";
-            const selectVal = document.getElementById('selectIsolant').value.split('|');
-            let prixUnitaireM2 = parseFloat(selectVal[3]);
-
-            let coefficientU = (1 / resistanceCible).toFixed(2);
-            let fluxTotal = ((surface * deltaT) / resistanceCible).toFixed(2);
-            let epaisseurCm = (resistanceCible * lambda * 100).toFixed(1);
-            let coutEstime = (surface * prixUnitaireM2 * (resistanceCible / 3)).toFixed(0);
-            let dateJour = new Date().toLocaleDateString();
-            let serialNum = "TC-B2B-" + Math.floor(100000 + Math.random() * 900000);
-            let inertieDeg = (densite * chaleurSpecifique / (lambda * 10000)).toFixed(1) + " h";
-
-            let descMatText = `Isolant sélectionné avec λ = ${lambda} W/m·K, masse volumique ρ = ${densite} kg/m³, chaleur spécifique c = ${chaleurSpecifique} J/kg·K. Inertie thermique estimée : ${inertieDeg}.`;
-            let svgContent = genererSVGReperage(fluxTotal * 0.5, fluxTotal * 0.35, fluxTotal * 0.15);
-
-            let projetData = {
-                nom: nom,
-                serial: serialNum,
-                date: dateJour,
-                surface: surface + " m²",
-                resistance: resistanceCible + " m²·K/W",
-                epaisseur: epaisseurCm + " cm",
-                cout: Number(coutEstime).toLocaleString() + " XAF"
-            };
-            sauvegarderProjetLocalStorage(projetData);
-
-            ['', 'print'].forEach(prefix => {
-                const get = id => document.getElementById(prefix + (prefix ? id.charAt(0).toUpperCase() + id.slice(1) : id));
-                if(get('resNom1')) {
-                    get('resNom1').innerText = nom + " (" + serialNum + ")";
-                    get('resDate1').innerText = dateJour;
-                    get('resSurface1').innerText = surface + " m²";
-                    get('resDeltaT1').innerText = deltaT + " °C";
-                    get('resEpaisseur1').innerText = epaisseurCm + " cm";
-                    get('resDescMat').innerText = descMatText;
-                    get('resU2').innerText = coefficientU + " W/(m²·K)";
-                    get('resFlux2').innerText = fluxTotal + " W";
-                    get('resR2').innerText = resistanceCible + " m²·K/W";
-                    get('resDecr2').innerText = inertieDeg;
-                    get('svgGraphContainer').innerHTML = svgContent;
-                    get('resCout3').innerText = "~" + Number(coutEstime).toLocaleString() + " XAF";
-                    get('resSerialBox').innerHTML = "<strong>N° de Série" + (prefix ? "" : " Infalsifiable") + " :</strong> " + serialNum;
-                }
-            });
-
-            allerAEtape(2);
-        }
-
-        function sauvegarderProjetLocalStorage(data) {
-            let historique = JSON.parse(localStorage.getItem('ombena_historique')) || [];
-            historique.unshift(data);
-            if(historique.length > 20) historique.pop();
-            localStorage.setItem('ombena_historique', JSON.stringify(historique));
-        }
-
-        function voirHistorique() {
-            let historique = JSON.parse(localStorage.getItem('ombena_historique')) || [];
-            let container = document.getElementById('historiqueContenu');
-            if(historique.length === 0) {
-                container.innerHTML = "<p style='font-size:0.75rem; color:#718096;'>Aucun projet enregistré.</p>";
-            } else {
-                let html = `<table class="history-table"><tr><th>Projet</th><th>Série</th><th>Surface</th><th>Coût</th></tr>`;
-                historique.forEach(item => {
-                    html += `<tr><td>${item.nom}</td><td>${item.serial}</td><td>${item.surface}</td><td>${item.cout}</td></tr>`;
-                });
-                html += `</table>`;
-                container.innerHTML = html;
-            }
-            allerAEtape('History');
-        }
-
-        function viderHistorique() {
-            localStorage.removeItem('ombena_historique');
-            voirHistorique();
+                allerAEtape(2);
+            }, 600);
         }
 
         function allerAEtape(numero) {
             document.querySelectorAll('.step-section').forEach(el => el.classList.remove('active'));
-            let target = typeof numero === 'number' ? 'step' + numero : 'step' + numero;
-            document.getElementById(target).classList.add('active');
+            document.getElementById('step' + numero).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function telechargerPDF() {
-            window.print();
         }
     </script>
 </body>
