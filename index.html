@@ -86,12 +86,12 @@
     </div>
 
     <div class="form-group">
-        <label for="deltaT">Écart de température ($\Delta T$ en °C) :</label>
+        <label for="deltaT">Écart de température (ΔT en °C) :</label>
         <input type="number" id="deltaT" placeholder="Ex: 20">
     </div>
 
     <div class="form-group">
-        <label for="resistance">Résistance thermique ($R$ en $m^2\cdot K/W$) :</label>
+        <label for="resistance">Résistance thermique (R en m²·K/W) :</label>
         <input type="number" step="0.01" id="resistance" placeholder="Ex: 2.5">
     </div>
 
@@ -136,7 +136,7 @@
 
         texteRes.innerHTML = `
             <strong>Projet :</strong> ${nom || "Non spécifié"}<br>
-            <strong>Coefficient de transmission thermique ($U$) :</strong> ${coefficientU.toFixed(2)} W/(m²·K)<br>
+            <strong>Coefficient de transmission thermique (U) :</strong> ${coefficientU.toFixed(2)} W/(m²·K)<br>
             <strong>Flux thermique total estimé :</strong> ${fluxThermique.toFixed(2)} W
         `;
         resDiv.style.display = "block";
