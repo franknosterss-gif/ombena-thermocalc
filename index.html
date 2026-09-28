@@ -21,18 +21,19 @@
             background: var(--bg-gradient);
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--text-main);
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 520px;
             background: var(--card-bg);
             backdrop-filter: blur(10px);
-            padding: 35px;
+            padding: 25px;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             box-sizing: border-box;
@@ -41,32 +42,34 @@
             text-align: center;
             color: var(--primary);
             margin: 0 0 5px 0;
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
         .subtitle {
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-weight: 500;
         }
+        /* Stepper ultra stable et propre */
         .stepper {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 35px;
-            position: relative;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 12px;
         }
         .step-indicator {
-            flex: 1;
-            text-align: center;
             font-size: 11px;
             font-weight: 700;
-            color: #cbd5e1;
+            color: #94a3b8;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
         }
         .step-indicator.active {
             color: var(--primary);
@@ -77,32 +80,27 @@
         }
         .step-content {
             display: none;
-            animation: fadeIn 0.4s ease-in-out;
         }
         .step-content.active {
             display: block;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
         .form-group {
-            margin-bottom: 22px;
+            margin-bottom: 18px;
         }
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             color: #334155;
         }
         input {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             border: 2px solid #e2e8f0;
             border-radius: 10px;
             box-sizing: border-box;
-            font-size: 15px;
+            font-size: 14px;
             transition: all 0.3s;
             background: #f8fafc;
         }
@@ -114,17 +112,17 @@
         }
         .btn-container {
             display: flex;
-            gap: 12px;
-            margin-top: 30px;
+            gap: 10px;
+            margin-top: 25px;
         }
         button {
             flex: 1;
-            padding: 15px;
+            padding: 14px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
@@ -151,26 +149,26 @@
         .btn-danger {
             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-            margin-top: 15px;
+            margin-top: 12px;
             width: 100%;
         }
         .result-card {
             background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
             border: 1px solid #bbf7d0;
             border-left: 6px solid #10b981;
-            padding: 22px;
+            padding: 18px;
             border-radius: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .result-card h4 {
             margin-top: 0;
             color: #065f46;
-            font-size: 18px;
-            margin-bottom: 15px;
+            font-size: 16px;
+            margin-bottom: 12px;
         }
         .result-card p {
-            margin: 8px 0;
-            font-size: 15px;
+            margin: 6px 0;
+            font-size: 14px;
             color: #166534;
         }
     </style>
@@ -181,16 +179,16 @@
     <h2>Ombena ThermoCalc Pro</h2>
     <div class="subtitle">Logiciel d'Ingénierie & Performance Énergétique</div>
     
-    <!-- Indicateur d'étapes -->
+    <!-- Indicateur d'étapes fixe -->
     <div class="stepper">
         <div class="step-indicator active" id="ind-1">1. Projet</div>
-        <div class="step-indicator" id="ind-2">2. Paramètres</div>
-        <div class="step-indicator" id="ind-3">3. Résultats & PDF</div>
+        <div class="step-indicator" id="ind-2">2. Paramètre</div>
+        <div class="step-indicator" id="ind-3">3. Résultats</div>
     </div>
 
     <!-- ÉTAPE 1 -->
     <div class="step-content active" id="step-1">
-        <h3 style="color: #334155; font-size: 18px; margin-top: 0;">Informations Générales</h3>
+        <h3 style="color: #334155; font-size: 16px; margin-top: 0;">Informations Générales</h3>
         <div class="form-group">
             <label for="nomProjet">Nom du Projet / Bâtiment</label>
             <input type="text" id="nomProjet" placeholder="Ex: Résidence Lumumba - Libreville">
@@ -200,13 +198,13 @@
             <input type="text" id="nomClient" placeholder="Ex: M. Ombena">
         </div>
         <div class="btn-container">
-            <button onclick="allerEtape(2)">Continuer vers les Paramètres</button>
+            <button onclick="allerEtape(2)">Continuer</button>
         </div>
     </div>
 
     <!-- ÉTAPE 2 -->
     <div class="step-content" id="step-2">
-        <h3 style="color: #334155; font-size: 18px; margin-top: 0;">Caractéristiques de la Paroi</h3>
+        <h3 style="color: #334155; font-size: 16px; margin-top: 0;">Caractéristiques de la Paroi</h3>
         <div class="form-group">
             <label for="surface">Surface de la paroi (m²)</label>
             <input type="number" id="surface" placeholder="Ex: 150">
@@ -227,7 +225,7 @@
 
     <!-- ÉTAPE 3 -->
     <div class="step-content" id="step-3">
-        <h3 style="color: #334155; font-size: 18px; margin-top: 0;">Synthèse de l'Étude</h3>
+        <h3 style="color: #334155; font-size: 16px; margin-top: 0;">Synthèse de l'Étude</h3>
         
         <div class="result-card">
             <h4>Résultats Analytiques</h4>
@@ -239,7 +237,7 @@
 
         <div class="btn-container">
             <button class="btn-secondary" onclick="allerEtape(2)">Modifier</button>
-            <button class="btn-pdf" onclick="telechargerPDFSpectaculaire()">Télécharger le PDF</button>
+            <button class="btn-pdf" onclick="telechargerPDFSpectaculaire()">Télécharger PDF</button>
         </div>
         <button class="btn-danger" onclick="effacerDonnees()">Effacer et Recommencer</button>
     </div>
@@ -312,7 +310,6 @@
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        // En-tête design plein bloc
         doc.setFillColor(37, 99, 235);
         doc.rect(0, 0, 210, 36, "F");
 
@@ -325,7 +322,6 @@
         doc.setFont("helvetica", "normal");
         doc.text("Rapport d'Étude Thermique & Efficacité", 130, 23);
 
-        // Section 1 : Informations
         doc.setTextColor(30, 41, 59);
         doc.setFont("helvetica", "bold");
         doc.setFontSize(13);
@@ -345,7 +341,6 @@
         doc.setFont("helvetica", "bold");
         doc.text(donneesEtude.nomClient, 55, 74);
 
-        // Section 2 : Paramètres
         doc.setFont("helvetica", "bold");
         doc.setFontSize(13);
         doc.text("2. Paramètres Thermiques de la Paroi", 15, 94);
@@ -365,9 +360,8 @@
         doc.setFont("helvetica", "normal");
         doc.text("- Résistance thermique (R) :", 20, 124);
         doc.setFont("helvetica", "bold");
-        doc.text(donneesEtude.R + " m²·K/W", 85, 124);
+        doc.text(donneesText = donneesEtude.R + " m²·K/W", 85, 124);
 
-        // Section 3 : Cadre Résultats Spectaculaire
         doc.setFillColor(240, 253, 244);
         doc.setDrawColor(16, 185, 129);
         doc.roundedRect(15, 138, 180, 42, 3, 3, "FD");
@@ -388,13 +382,11 @@
         doc.setFont("helvetica", "bold");
         doc.text(donneesEtude.fluxThermique.toFixed(2) + " W", 115, 172);
 
-        // Pied de page
         doc.setFont("helvetica", "italic");
         doc.setFontSize(8);
         doc.setTextColor(150, 150, 150);
         doc.text("Document généré officiellement par Ombena ThermoCalc Pro - Conçu par Ombena", 15, 285);
 
-        // Forcer le téléchargement direct sous forme de fichier
         doc.output('dataurlnewwindow');
         doc.save(`Rapport_Thermique_${donneesEtude.nomProjet.replace(/\s+/g, '_')}.pdf`);
     }
