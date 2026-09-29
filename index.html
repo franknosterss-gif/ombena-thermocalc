@@ -28,10 +28,27 @@
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .logo-placeholder {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 14px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
         h2 {
             text-align: center;
             color: #2563eb;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
         .subtitle {
             text-align: center;
@@ -100,7 +117,6 @@
         .btn-secondary:hover {
             background-color: #475569;
         }
-        /* Design ultra propre et moderne pour la section Résultats */
         .result-card {
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             border: 1px solid #e2e8f0;
@@ -147,6 +163,11 @@
 <body>
 
     <div class="container">
+        <!-- Emplacement du Logo (Tu pourras remplacer la div par une balise <img src="ton-logo.png"> plus tard) -->
+        <div class="logo-container">
+            <div class="logo-placeholder">OT</div>
+        </div>
+
         <h2>Ombena ThermoCalc</h2>
         <div class="subtitle">Performance Énergétique &bull; Hors-Ligne</div>
 
