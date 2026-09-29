@@ -418,9 +418,19 @@
         doc.setTextColor(150, 150, 150);
         doc.text("Document généré officiellement par Ombena ThermoCalc Pro - Conçu par Ombena", 15, 285);
 
-        // Téléchargement direct sans ouvrir d'onglet blanc
-        doc.save(`Rapport_Thermique.pdf`);
-    }
+       const blobPdf = doc.output('blob');
+    const urlBlob = URL.createObjectURL(blobPdf);
+    const lien = document.createElement('a');
+    lien.href = urlBlob;
+    lien.download = 'Rapport_Thermique.pdf';
+    lien.style.display = 'none';
+    document.body.appendChild(lien);
+    lien.click();
+    setTimeout(() => {
+        document.body.removeChild(lien);
+        window.URL.revokeObjectURL(urlBlob);
+    }, 100);
+
 
     function effacerDonnees() {
         localStorage.clear();
@@ -434,5 +444,4 @@
 </script>
 
 </body>
-</html><meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+</html>
