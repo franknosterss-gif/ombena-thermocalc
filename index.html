@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ombena ThermoCalc Pro</title>
-    <!-- Inclusion de jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * {
@@ -182,8 +181,11 @@
             document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.step-indicator span').forEach(el => el.classList.remove('active'));
             
-            document.getElementById('step-' + numero).classList.add('active');
-            document.getElementById('ind-' + numero).classList.add('active');
+            const targetStep = document.getElementById('step-' + numero);
+            const targetInd = document.getElementById('ind-' + numero);
+
+            if (targetStep) targetStep.classList.add('active');
+            if (targetInd) targetInd.classList.add('active');
         }
 
         function lancerCalcul() {
@@ -208,7 +210,6 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            // En-tête du PDF
             doc.setFillColor(37, 99, 235);
             doc.rect(0, 0, 210, 36, "F");
 
@@ -221,7 +222,6 @@
             doc.setFont("helvetica", "normal");
             doc.text("Rapport d'Étude Thermique & Efficacité", 15, 30);
 
-            // Contenu
             doc.setTextColor(30, 41, 59);
             doc.setFont("helvetica", "bold");
             doc.setFontSize(13);
@@ -240,7 +240,6 @@
             doc.text("Coefficient U (Transmission) : " + u + " W/(m²·K)", 15, 82);
             doc.text("Flux Thermique Total : " + flux + " W", 15, 90);
 
-            // Téléchargement propre par Blob (évite les erreurs Termux/Android)
             const blobPdf = doc.output('blob');
             const urlBlob = URL.createObjectURL(blobPdf);
             const lien = document.createElement('a');
@@ -267,3 +266,4 @@
     </script>
 </body>
 </html>
+
