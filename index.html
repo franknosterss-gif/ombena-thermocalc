@@ -35,7 +35,7 @@
         }
         .subtitle {
             text-align: center;
-            font-size: 12px;
+            font-size: 11px;
             color: #64748b;
             margin-bottom: 20px;
             text-transform: uppercase;
@@ -89,6 +89,7 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            transition: background 0.2s;
         }
         button:hover {
             background-color: #1d4ed8;
@@ -99,16 +100,47 @@
         .btn-secondary:hover {
             background-color: #475569;
         }
-        .result-box {
-            background: #f8fafc;
+        /* Design ultra propre et moderne pour la section Résultats */
+        .result-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             border: 1px solid #e2e8f0;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            border-left: 5px solid #2563eb;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .result-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #2563eb;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .result-item {
-            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
             font-size: 14px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 6px;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .result-label {
+            color: #64748b;
+            font-weight: 500;
+        }
+        .result-value {
+            color: #0f172a;
+            font-weight: 700;
         }
     </style>
 </head>
@@ -116,7 +148,7 @@
 
     <div class="container">
         <h2>Ombena ThermoCalc</h2>
-        <div class="subtitle">Performance Énergétique (Mode Hors-Ligne)</div>
+        <div class="subtitle">Performance Énergétique &bull; Hors-Ligne</div>
 
         <div class="step-indicator">
             <span id="ind-1" class="active">1. PROJET</span>
@@ -159,17 +191,29 @@
 
         <!-- ÉTAPE 3 : RÉSULTATS -->
         <div id="step-3" class="step-content">
-            <div class="result-box">
-                <div class="result-item"><strong>Projet :</strong> <span id="resProjet">--</span></div>
-                <div class="result-item"><strong>Client :</strong> <span id="resClient">--</span></div>
-                <div class="result-item"><strong>Coefficient U :</strong> <span id="resU">--</span> W/(m²·K)</div>
-                <div class="result-item"><strong>Flux thermique :</strong> <span id="resFlux">--</span> W</div>
+            <div class="result-card">
+                <div class="result-title">📊 Synthèse Analytique</div>
+                <div class="result-item">
+                    <span class="result-label">Projet :</span>
+                    <span class="result-value" id="resProjet">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Client :</span>
+                    <span class="result-value" id="resClient">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Coefficient U :</span>
+                    <span class="result-value"><span id="resU">--</span> W/(m²·K)</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Flux thermique :</span>
+                    <span class="result-value"><span id="resFlux">--</span> W</span>
+                </div>
             </div>
+
             <div class="btn-container">
                 <button class="btn-secondary" onclick="changerEtape(2)">Modifier</button>
-            </div>
-            <div style="margin-top: 15px; text-align: center;">
-                <button class="btn-secondary" style="background-color: #ef4444; padding: 10px; font-size: 14px;" onclick="effacerDonnees()">Nouvelle étude</button>
+                <button style="background-color: #ef4444;" onclick="effacerDonnees()">Nouvelle étude</button>
             </div>
         </div>
     </div>
