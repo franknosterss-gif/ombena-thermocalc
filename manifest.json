@@ -7,28 +7,8 @@
     "theme_color": "#2563eb",
     "icons": [
         {
-            "src": "icon.svg",
-            "sizes": "192x192",
-            "type": "image/svg+xml"
-        },
-        {
-            "src": "icon.svg",
+            "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSIxMjgiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSI1MCUiIHk9IjU0JSIgZm9udC1zaXplPSIyMjAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjZmZmZmZmIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPk9UPC90ZXh0Pjwvc3ZnPg==",
             "sizes": "512x512",
-            "type": "image/svg+xml"
-        }
-    ]
-}
-{
-    "name": "Ombena ThermoCalc Pro",
-    "short_name": "ThermoCalc",
-    "start_url": "./",
-    "display": "standalone",
-    "background_color": "#0f172a",
-    "theme_color": "#2563eb",
-    "icons": [
-        {
-            "src": "icon.svg",
-            "sizes": "192x192 512x512",
             "type": "image/svg+xml"
         }
     ]
